@@ -1,17 +1,17 @@
-const {User,validate,resetpassword} = require('../test/user');
+const {User,validate,resetpassword} = require('./user');
 const mongoose = require('mongoose');
 const express = require('express');
-const bodyparser = require('body-parser');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const router = express.Router();
 
-router.get('/',async (req,res) => {
+
+router.post('/get',async (req,res) => {
     console.log(req.body);
-     User.find({},['email','role','phno']).then(data=>{
+     User.find({email: req.body.email},['email','role','phno']).then(data=>{
          res.status(200).send(data);
      }).catch(err => {
-     res.status(400).send(err)
+     res.status(400).send(err);
      console.log("Error occurred");
      });
 });
