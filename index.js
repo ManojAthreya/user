@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
-const route = require('../test/route.js');
+const route = require('./route');
 const bodyparser = require('body-parser');
 const express = require('express');
 const app = express();
