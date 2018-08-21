@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-const bcrypt = require('bcrypt')
+
 
 //Schema of User
  const User = mongoose.model('User',new mongoose.Schema({
@@ -51,44 +51,10 @@ function validatePassword(req){
    return Joi.validate(req,schema);     
 }
 
-function updatePassword(user){
-  const schema = {
-      password:Joi.string().min(5).max(255).required()
-   }
-     return Joi.validate(user,schema);     
- }
- 
- function updateLastLogin(user)
- {
-   let query = {username: user};
-   let last = {lastOnline: Date.now()};
-   user.update(query, last);
- }
- 
- const last = () => {
-   var query = {
-     username: req.user.username
-   };
-   var update = {
-     lastOnline: Date.now()
-   };
-   var options = {
-     new: true
-   };
-   user.findOneAndUpdate(query, update, options, function (err, user) {
-     if (err) {
-       console.log('error');
-     }
-   });
-   return Joi.validate(user,last);  
- };
-
-
  //exporting model
 exports.User = User;
 exports.validate = validateUser;
 exports.validateP = validatePassword;
-exports.updateP = updatePassword;
-exports.update = updateLastLogin;
+
 
 

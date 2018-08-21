@@ -1,4 +1,5 @@
 const {User,validate,validateP,updateP,update} = require('../models/user');
+const loginfunctions = require('../models/functions');
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const express = require('express');
